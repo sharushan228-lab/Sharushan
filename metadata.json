@@ -1,0 +1,6 @@
+{
+  "name": "LernFuchs – Schweizer Lern-App",
+  "description": "Interaktives Schweizer Lernportal für die 1. bis 6. Klasse (Mathematik, Deutsch, Französisch, Englisch, NMG) mit Themenmodulen und Blitztraining.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

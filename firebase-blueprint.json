@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "LearnerProgress": {
+      "title": "LearnerProgress",
+      "description": "Persönlicher Lernstand, Klassenstufe, Sterne und gelöste Aufgaben eines angemeldeten LernFuchs-Kindes.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID des Lernenden."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Anzeigename des Lernenden."
+        },
+        "grade": {
+          "type": "integer",
+          "enum": [1, 2, 3, 4, 5, 6],
+          "description": "Aktuelle Schweizer Primarschulklasse (1 bis 6)."
+        },
+        "preferredSubject": {
+          "type": "string",
+          "enum": ["Mathe", "Deutsch", "Französisch", "Englisch", "NMG"],
+          "maxLength": 16,
+          "description": "Zuletzt ausgewähltes Lernfach."
+        },
+        "stars": {
+          "type": "integer",
+          "description": "Gesammelte Sterne."
+        },
+        "streak": {
+          "type": "integer",
+          "description": "Aktuelle Serie richtiger Aufgaben im ersten Versuch."
+        },
+        "completedIds": {
+          "type": "array",
+          "description": "Liste gelöster Aufgaben-IDs (maximal 500 Einträge)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Erstellungszeitpunkt (Server Timestamp)."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Letzter Änderungszeitpunkt (Server Timestamp)."
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "grade",
+        "preferredSubject",
+        "stars",
+        "streak",
+        "completedIds",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/private/progress": {
+      "schema": { "$ref": "#/entities/LearnerProgress" },
+      "description": "Privater Lernstand eines einzelnen angemeldeten Benutzers."
+    }
+  }
+}
